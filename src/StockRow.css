@@ -1,0 +1,37 @@
+.stockRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+}
+
+.stockRow__info {
+    display: flex;
+    align-items: center;
+}
+
+.stockRow__data {
+    text-align: left;
+}
+
+.stockRow__info > h1 {
+    font-size: 16px;
+}
+
+.stockRow__info > p {
+    font-size: 14px;
+    columns: gray;
+}
+
+.stockRow__logo {
+    height: 80px;
+    width: 80px;
+    margin-right: 20px;
+    object-fit: contain;
+    border-radius: 16px;
+}
+
+.stockRow__price {
+    font-size: 32px;
+}
