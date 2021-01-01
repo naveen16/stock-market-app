@@ -12,4 +12,4 @@ Built using React, using React Hooks.
 Uses API from Finnhub https://finnhub.io/docs/api
 
 Used API for getting Ticker quotes as well as company details.
-To continuously update the stock price I used the webhook api to stream in the updated prices.
+To continuously update the stock price I used the websocket api to stream in the updated prices.
