@@ -12,5 +12,13 @@
     color: white;
     padding-top: 40px;
     padding-bottom: 40px;
-    font-size: 48px;
+    font-size: 36px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-style: italic;
+}
+
+@media (max-width: 800px) {
+    .header > h1 {
+        font-size: 18px;
+    }
 }

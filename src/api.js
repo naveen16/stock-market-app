@@ -4,6 +4,7 @@ const api_key = 'btj3uvv48v6p9f1pq0h0';
 const symbols = [
     'AAPL', 'AMZN', 'GOOGL', 'MSFT', 'FB', 'NFLX', 'TSLA', 'UBER', 'LYFT', 'FDX', 'UPS'
 ]
+const BTC = 'BINANCE:BTCUSDT';
 
 const getQuote = async (symbol) => {
     const url = `${baseUrl}/quote?symbol=${symbol}&token=${api_key}`;
@@ -25,14 +26,18 @@ const getCompanyInfo = async (symbol) => {
 
 const getAllCompanyInfo = async () => {
     const response = {};
-    for (const symbol of symbols) {
-        const price = await getQuote(symbol);
-        const {logo, ticker, name} = await getCompanyInfo(symbol);
+    const [quotes, info] = await Promise.all([
+        Promise.all(symbols.map((symbol) => getQuote(symbol))),
+        Promise.all(symbols.map((symbol) => getCompanyInfo(symbol)))
+    ]);
+    for (let i = 0; i < symbols.length; i++) {
+        const symbol = symbols[i];
+        const [price, {logo, ticker, name}] = [quotes[i], info[i]];
         response[`${symbol}`] = {
             logo,
             ticker,
             name,
-            price: price.c.toFixed(2)
+            price: price.c?.toFixed(2)
         }
     }
     console.log('STOCKS', response)
@@ -42,20 +47,15 @@ const getAllCompanyInfo = async () => {
 /**
  * Subscribe to finnhub api websocket to get quotes and company info for specific tickers
  * We pass in the react useState hook values to update the stocks displayed
- * @param {*} stocks 
- * @param {*} setStocks 
+ * @param {*} stocks
+ * @param {*} setStocks
  */
 const handleDataStream = (stocks, setStocks) => {
     const ws = new WebSocket(`wss://ws.finnhub.io?token=${api_key}`)
     ws.onopen = () => {
-        //ws.send(JSON.stringify({'type':'subscribe', 'symbol': 'BINANCE:BTCUSDT'}));
-        ws.send(JSON.stringify({'type':'subscribe', 'symbol': 'AAPL'}));
-        ws.send(JSON.stringify({'type':'subscribe', 'symbol': 'AMZN'}));
-        ws.send(JSON.stringify({'type':'subscribe', 'symbol': 'GOOGL'}));
-        ws.send(JSON.stringify({'type':'subscribe', 'symbol': 'MSFT'}));
-        ws.send(JSON.stringify({'type':'subscribe', 'symbol': 'FB'}));
-        ws.send(JSON.stringify({'type':'subscribe', 'symbol': 'NFLX'}));
-        ws.send(JSON.stringify({'type':'subscribe', 'symbol': 'TSLA'}));
+        symbols.forEach((symbol) => {
+            ws.send(JSON.stringify({'type':'subscribe', 'symbol': symbol}));
+        })
     }
     ws.onmessage = e => {
         const data = JSON.parse(e.data);

@@ -14,10 +14,8 @@ function App() {
     api.handleDataStream(stocks, setStocks);
 
     useEffect( () => {
-        console.log('IN USE EFFECT');
         const getQuotes = async () => {
-            //await new Promise(resolve => setTimeout(resolve, 5000));
-            console.log('...GETTING QUOTE');
+            console.log('Getting Quote...');
             const _stocks = await api.getAllCompanyInfo();
             setStocks(_stocks);
         }
@@ -26,7 +24,7 @@ function App() {
         });
     }, [])
     return (
-        <div className="App">
+        <div className="app">
             <Header />
         {
             !loaded ? (
@@ -34,8 +32,8 @@ function App() {
                     <CircularProgress />
                 </div>
             ) : (
-                <Body 
-                    stocks={stocks} 
+                <Body
+                    stocks={stocks}
                 />
             )
         }

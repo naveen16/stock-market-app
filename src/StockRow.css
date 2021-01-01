@@ -1,9 +1,10 @@
 .stockRow {
     display: flex;
-    align-items: center;
     justify-content: space-between;
     border-top: 1px solid gray;
     border-bottom: 1px solid gray;
+    overflow-x: hidden;
+    padding: 0px 10px;
 }
 
 .stockRow__info {
@@ -21,17 +22,36 @@
 
 .stockRow__info > p {
     font-size: 14px;
-    columns: gray;
 }
 
 .stockRow__logo {
     height: 80px;
     width: 80px;
-    margin-right: 20px;
+    margin-right: 30px;
     object-fit: contain;
     border-radius: 16px;
 }
 
 .stockRow__price {
     font-size: 32px;
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 800px) {
+    .stockRow__logo {
+        height: 40px;
+        width: 40px;
+        border-radius: 24px;
+    }
+    .stockRow__info > h1 {
+        font-size: 16px;
+    }
+    .stockRow__info > p {
+        font-size: 12px;
+    }
+    .stockRow__price {
+        font-size: 18px;
+    }
 }

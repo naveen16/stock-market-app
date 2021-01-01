@@ -1,9 +1,8 @@
 .body {
-    overflow: auto;
-    flex: 0.8;
-    text-align: center;
     background-color: black;
-    height: 100vh;
+    text-align: center;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .body__list {
@@ -15,5 +14,20 @@
 }
 
 .body__date {
-    color: white
+    text-align: center;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-style: italic;
+}
+
+@media (max-width: 800px) {
+    .body__list {
+        height: 100vh;
+        width: 100%;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    .body__date {
+        font-size: 8px;
+    }
 }
