@@ -6,7 +6,7 @@
 }
 
 .body__list {
-    height: 100vh;
+    height: 100%;
     width: 50%;
     margin-left: 25%;
     margin-right: 25%;
@@ -22,7 +22,7 @@
 
 @media (max-width: 800px) {
     .body__list {
-        height: 100vh;
+        height: 100%;
         width: 100%;
         margin-left: 0px;
         margin-right: 0px;

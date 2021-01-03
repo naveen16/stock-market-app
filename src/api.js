@@ -2,7 +2,7 @@ const baseUrl = `https://finnhub.io/api/v1`;
 const api_key = 'btj3uvv48v6p9f1pq0h0';
 
 const symbols = [
-    'AAPL', 'AMZN', 'GOOGL', 'MSFT', 'FB', 'NFLX', 'TSLA', 'UBER', 'LYFT', 'FDX', 'UPS'
+    'AAPL', 'AMZN', 'GOOGL', 'MSFT', 'FB', 'NFLX', 'TSLA', 'UBER', 'LYFT', 'FDX', 'UPS', 'ABNB', "CRM", 'SHOP'
 ]
 const BTC = 'BINANCE:BTCUSDT';
 
@@ -37,7 +37,8 @@ const getAllCompanyInfo = async () => {
             logo,
             ticker,
             name,
-            price: price.c?.toFixed(2)
+            openPrice: parseFloat(price.o?.toFixed(2)),
+            price: parseFloat(price.c?.toFixed(2))
         }
     }
     console.log('STOCKS', response)

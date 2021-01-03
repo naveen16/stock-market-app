@@ -12,9 +12,10 @@ function Body({stocks}) {
             <div className="body__list">
                 {Object.values(stocks).map(stock => (
                     <StockRow
-                        key={stock.ticker} 
-                        price={stock.price} 
-                        logo={stock.logo} 
+                        key={stock.ticker}
+                        price={stock.price}
+                        openPrice={stock.openPrice}
+                        logo={stock.logo}
                         ticker={stock.ticker}
                         name={stock.name}
                     />
